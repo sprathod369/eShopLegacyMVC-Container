@@ -1,0 +1,48 @@
+@using Microsoft.AspNetCore.Html
+<!DOCTYPE html> 
+<html> 
+<head> 
+    <meta charset="utf-8" /> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>@ViewBag.Title - Catalog manager (MVC)</title> 
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" /> 
+    <link rel="stylesheet" href="~/css/site.css" /> 
+</head> 
+<body> 
+    <header class="navbar navbar-light navbar-static-top"> 
+        <div class="esh-header-brand"> 
+            <a href="@Url.Action("Index", "Catalog")"> 
+                <img src="~/images/brand.png" alt="Brand" /> 
+            </a> 
+        </div> 
+    </header> 
+    <section class="esh-app-hero"> 
+        <div class="container esh-header"> 
+            <h1 class="esh-header-title">Catalog manager <span>(MVC)</span></h1> 
+        </div> 
+    </section> 
+    <div class="container"> 
+        @RenderBody() 
+    </div> 
+    <footer class="esh-app-footer"> 
+        <div class="container"> 
+            <article class="row"> 
+                <section class="col-sm-6"> 
+                    <img class="esh-app-footer-brand" src="~/images/brand_dark.png" alt="Brand Dark" /> 
+                </section> 
+                <section class="col-sm-6"> 
+                    <img class="esh-app-footer-text hidden-xs" src="~/images/main_footer_text.png" width="335" height="26" alt="Footer Text" /> 
+                    <br /> 
+                    @{   var machineName = Context.Session.GetString("MachineName"); 
+                        var sessionStartTime = Context.Session.GetString("SessionStartTime");
+                        var sessionInfo = new HtmlString($"{machineName}, {sessionStartTime}");  } 
+                    <small>@sessionInfo</small> 
+                </section> 
+            </article> 
+        </div> 
+    </footer> 
+    <script src="~/lib/jquery/dist/jquery.min.js"></script> 
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script> 
+    @RenderSection("scripts", required: false) 
+</body> 
+</html> 
